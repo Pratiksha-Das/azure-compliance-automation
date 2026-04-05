@@ -1,0 +1,14 @@
+{
+  "name": "Require-CostCenter-Tag",
+  "displayName": "Require CostCenter Tag on Resources",
+  "mode": "Indexed",
+  "policyRule": {
+    "if": {
+      "field": "tags['CostCenter']",
+      "exists": "false"
+    },
+    "then": {
+      "effect": "Audit"
+    }
+  }
+}

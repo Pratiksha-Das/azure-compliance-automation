@@ -1,0 +1,9 @@
+PolicyResources
+| where type == "microsoft.policyinsights/policystates"
+| where properties.complianceState == "NonCompliant"
+| where properties.policyDefinitionAction == "audit"
+| project
+    resourceId = tostring(properties.resourceId),
+    resourceType = tostring(properties.resourceType),
+    policyName = tostring(properties.policyDefinitionName)
+| limit 10
