@@ -9,8 +9,10 @@ try {
     if ($null -eq $existingTags) { Write-Host "Resource not found — skipping"; return }
     if ($existingTags.ContainsKey("Environment")) { Write-Host "Already compliant — skipping"; return }
     Update-AzTag -ResourceId $resourceId -Tag @{ Environment = "Untagged-AutoRemediated" } -Operation Merge
-    Write-Host "SUCCESS: Tag applied to $resourceId"
+    $logEntry = @{ resourceId = $resourceId; status = "SUCCESS"; action = "Tag added: Environment=Untagged-AutoRemediated"; timestamp = (Get-Date).ToString("o") } | ConvertTo-Json
+    Write-Host $logEntry
 } catch {
-    Write-Error "FAILED: $_"
+    $logEntry = @{ resourceId = $resourceId; status = "FAILED"; error = $_.ToString(); timestamp = (Get-Date).ToString("o") } | ConvertTo-Json
+    Write-Error $logEntry
     throw
 }
