@@ -1,0 +1,17 @@
+{
+  "bindings": [
+    {
+      "name": "Timer",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "0 */30 * * * *"
+    },
+    {
+      "name": "outputQueueItem",
+      "type": "queue",
+      "direction": "out",
+      "queueName": "remediation-queue",
+      "connection": "AzureWebJobsStorage"
+    }
+  ]
+}
