@@ -1,4 +1,4 @@
-markdown# Azure Compliance Automation Engine
+# Azure Compliance Automation Engine
 
 Automated Azure Policy compliance detection and remediation pipeline built on Azure — zero manual intervention.
 
